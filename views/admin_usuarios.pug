@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  h2.fw-bold.text-white.mb-4 Gestión de Usuarios <span class="text-kreo">(Kill Switch)</span>
+  if mensaje
+    .alert.alert-success.bg-transparent.border-success.text-kreo.fw-bold= mensaje
+
+  .card-glass.p-4
+    table.table.table-dark.table-hover.align-middle
+      thead
+        tr
+          th Nombre
+          th Documento
+          th Rol
+          th Estado
+          th Acción
+      tbody
+        each u in listaUsuarios
+          tr
+            td= u.nombre
+            td= u.documento
+            td= u.rol_nombre
+            td
+              if u.estado === 'activo'
+                span.badge.bg-success Activo
+              else
+                span.badge.bg-danger Inactivo
+            td
+              form(action=`/usuarios/estado/${u.id}` method="POST")
+                select.form-select.form-select-sm.bg-dark.text-white.border-secondary.d-inline.w-auto.me-2(name="estado")
+                  option(value="activo" selected=u.estado==='activo') Activar
+                  option(value="inactivo" selected=u.estado==='inactivo') Desactivar
+                button.btn.btn-sm.btn-kreo(type="submit") Aplicar

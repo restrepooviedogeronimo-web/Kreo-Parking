@@ -1,0 +1,203 @@
+doctype html
+html(lang="es")
+  head
+    meta(charset="UTF-8")
+    title Kreo | Parqueadero Inteligente & Fintech
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css")
+    link(rel="stylesheet", href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css")
+    link(rel="stylesheet", href="/css/kreo-theme.css")
+    style.
+      /* Estilos para el despliegue fluido */
+      .expandable-content {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+        opacity: 0;
+      }
+      .expandable-content.open {
+        max-height: 1200px;
+        opacity: 1;
+      }
+      .clickable-card {
+        cursor: pointer;
+        transition: transform 0.3s ease, border-color 0.3s ease;
+      }
+      .clickable-card:hover {
+        border-color: var(--primary-red);
+      }
+      .mini-slider img {
+        width: 100%;
+        height: 220px;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+  body
+    nav.navbar.navbar-dark.fixed-top.bg-dark.bg-opacity-95.border-bottom.border-secondary.py-3
+      .container
+        a.navbar-brand.fw-bolder.fs-3.d-flex.align-items-center(href="/")
+          i.bi.bi-ev-front-fill.text-kreo.fs-2.me-2
+          | KRE<span class="text-kreo">O</span>
+        div.d-flex.align-items-center.gap-3
+          a.nav-link.text-white.d-none.d-md-inline(href="/beneficios") Beneficios
+          a.btn.btn-outline-light.rounded-pill.px-4(href="/login") Iniciar Sesión
+          a.btn.btn-kreo(href="/registro") Registrarse
+
+    //- 1. HERO Y TARJETAS DE HISTORIA / VISIÓN (Con Despliegue y 4 Fotos)
+    section.hero-landing.py-5.mt-5.text-center
+      .container.py-5
+        .row.justify-content-center
+          .col-lg-10
+            span.badge.bg-kreo.px-3.py-2.rounded-pill.mb-3 Innovación Tecnológica SENA
+            h1.display-3.fw-bolder.text-white.mb-4 El Ecosistema Digital de <br><span class="text-kreo">Parqueadero La Bahía</span>
+            p.lead.text-white.mb-5 Transformamos la gestión tradicional de vehículos en una experiencia completamente automatizada, segura y basada en finanzas digitales.
+            
+            .row.g-4.text-start.mt-4
+              
+              //- TARJETA 1: HISTORIA (Desplegable con 4 fotos)
+              .col-md-6
+                .card-glass.p-4.h-100.clickable-card(onclick="toggleExpand('historia-content', this)")
+                  .d-flex.justify-content-between.align-items-center
+                    h4.text-kreo.fw-bold.mb-0 <i class="bi bi-book-half me-2"></i> Nuestra Historia
+                    i.bi.bi-chevron-down.text-white.fs-5.transition-icon(id="icon-historia")
+                  p.text-white.mt-3.opacity-90 Kreo surge como un proyecto formativo de desarrollo de software en el SENA[cite: 3], evolucionando hacia un sistema de gestión inteligente... <span class="text-kreo fw-bold">Haz clic para expandir</span>
+                  
+                  div.expandable-content(id="historia-content")
+                    hr.border-secondary.my-3
+                    p.text-white.opacity-100.small Nativos de la colaboración académica, estructuramos una solución que digitalizó por completo los sótanos y áreas de parqueo, interconectando operadores y clientes corporativos mediante bases de datos optimizadas.
+                    //- 4 Fotos de Historia (Slider o Mini Grid)
+                    .row.g-2.mt-3.mini-slider
+                      .col-6: img(src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=500&q=80" alt="Sótano Parqueadero")
+                      .col-6: img(src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&w=500&q=80" alt="Trato en sótano")
+                      .col-6: img(src="https://images.unsplash.com/photo-1573164713988-8665fc963095?auto=format&fit=crop&w=500&q=80" alt="Desarrollo Software SENA")
+                      .col-6: img(src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Infraestructura Moderna")
+
+              //- TARJETA 2: VISIÓN Y MISIÓN (Desplegable con 4 fotos)
+              .col-md-6
+                .card-glass.p-4.h-100.clickable-card(onclick="toggleExpand('vision-content', this)")
+                  .d-flex.justify-content-between.align-items-center
+                    h4.text-kreo.fw-bold.mb-0 <i class="bi bi-eye-fill me-2"></i> Visión y Misión Conjunta
+                    i.bi.bi-chevron-down.text-white.fs-5(id="icon-vision")
+                  p.text-white.mt-3.opacity-90 Parqueadero La Bahía y Kreo unieron visión y misión para fusionar la infraestructura física con un software... <span class="text-kreo fw-bold">Haz clic para expandir</span>
+                  
+                  div.expandable-content(id="vision-content")
+                    hr.border-secondary.my-3
+                    p.text-white.opacity-100.small Garantizamos que cada conductor experimente seguridad absoluta y optimización de su tiempo mediante flujos ininterrumpidos de cobro por Wallet y control de aforo en tiempo real.
+                    .row.g-2.mt-3.mini-slider
+                      .col-6: img(src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=500&q=80" alt="Reunión ejecutiva parqueadero")
+                      .col-6: img(src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=500&q=80" alt="Vehículos seguros")
+                      .col-6: img(src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=500&q=80" alt="Cierre de negocios")
+                      .col-6: img(src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=500&q=80" alt="Tecnología Kreo")
+
+            .mt-5.d-flex.justify-content-center.gap-3
+              a.btn.btn-kreo.btn-lg(href="/registro") ¡Crea tu Cuenta Gratis!
+              a.btn.btn-outline-danger.btn-lg.rounded-pill.px-5(href="/beneficios") Ver Beneficios <i class="bi bi-arrow-right ms-2"></i>
+
+    //- 2. SEDES ESTRATÉGICAS (Con Mini Mapa Desplegable y 4 Fotos + Satisfacción)
+    section.py-5.border-top.border-secondary.bg-black
+      .container.py-5
+        h2.text-center.fw-bold.mb-5 Ubicaciones <span class="text-kreo">Estratégicas & Mapas</span>
+        p.text-center.text-white.opacity-80.mb-5 Haz clic en cualquier sede para desplegar el mapa interactivo, galería de la locación e índices de satisfacción.
+        
+        .row.g-4
+          
+          //- SEDE 1: PRINCIPAL LA BAHÍA
+          .col-md-6
+            .card-glass.p-4.h-100.clickable-card(onclick="toggleExpand('sede1-content', this)")
+              .d-flex.justify-content-between.align-items-center
+                h4.text-kreo.fw-bold.mb-0 <i class="bi bi-geo-alt-fill me-2"></i> Sede Principal - La Bahía Central
+                i.bi.bi-chevron-down.text-white.fs-5
+              p.text-white.opacity-90.mt-3 <strong>Dirección exacta:</strong> Calle 45 # 33-12 (Zona Comercial / Educativa).
+              p.text-white.opacity-90 <strong>Horario:</strong> Lunes a Sábado de 6:00 a.m. a 10:00 p.m.
+              span.badge.bg-success Capacidad: 120 Celdas (Autos y Motos)
+              
+              div.expandable-content(id="sede1-content")
+                hr.border-secondary.my-3
+                h6.text-kreo.fw-bold Mini Mapa Interactivo
+                .ratio.ratio-16x9.mb-3.rounded.overflow-hidden.border.border-secondary
+                  iframe(src="https://www.openstreetmap.org/export/embed.html?bbox=-75.58,6.24,-75.56,6.26&layer=mapnik" style="border:0;")
+                
+                h6.text-kreo.fw-bold.mt-3 Galería de la Sede & Satisfacción
+                .row.g-2.mini-slider.mb-3
+                  .col-6: img(src="https://images.unsplash.com/photo-1590381105924-c72589b9ef3f?auto=format&fit=crop&w=500&q=80" alt="Entrada Sede Principal")
+                  .col-6: img(src="https://images.unsplash.com/photo-1506521781263-d8422e82f27a?auto=format&fit=crop&w=500&q=80" alt="Bahía de parqueo")
+                  .col-6: img(src="https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=500&q=80" alt="Autos seguros")
+                  .col-6: img(src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=500&q=80" alt="Instalaciones")
+                
+                .p-3.bg-dark.rounded.border.border-secondary
+                  .d-flex.justify-content-between.text-white.small.mb-1
+                    <span>Índice de Satisfacción del Cliente:</span>
+                    <strong class="text-success">98.4% ⭐⭐⭐⭐⭐</strong>
+                  .d-flex.justify-content-between.text-white.small
+                    <span>Tiempo promedio de ingreso:</span>
+                    <strong class="text-kreo">18 Segundos (Express)</strong>
+
+          //- SEDE 2: SEDE NORTE
+          .col-md-6
+            .card-glass.p-4.h-100.clickable-card(onclick="toggleExpand('sede2-content', this)")
+              .d-flex.justify-content-between.align-items-center
+                h4.text-kreo.fw-bold.mb-0 <i class="bi bi-geo-alt-fill me-2"></i> Sede Norte - Expansión Kreo
+                i.bi.bi-chevron-down.text-white.fs-5
+              p.text-white.opacity-90.mt-3 <strong>Dirección exacta:</strong> Carrera 15 # 78-40 (Cerca al Centro Financiero).
+              p.text-white.opacity-90 <strong>Horario:</strong> 24 Horas / 7 Días a la Semana.
+              span.badge.bg-success Capacidad: 85 Celdas (Exclusivo Autos)
+              
+              div.expandable-content(id="sede2-content")
+                hr.border-secondary.my-3
+                h6.text-kreo.fw-bold Mini Mapa Interactivo
+                .ratio.ratio-16x9.mb-3.rounded.overflow-hidden.border.border-secondary
+                  iframe(src="https://www.openstreetmap.org/export/embed.html?bbox=-75.59,6.25,-75.57,6.27&layer=mapnik" style="border:0;")
+                
+                h6.text-kreo.fw-bold.mt-3 Galería de la Sede & Satisfacción
+                .row.g-2.mini-slider.mb-3
+                  .col-6: img(src="https://images.unsplash.com/photo-1508962914676-134849a727f0?auto=format&fit=crop&w=500&q=80" alt="Sede Norte Exterior")
+                  .col-6: img(src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=500&q=80" alt="Sótano ejecutivo")
+                  .col-6: img(src="https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=500&q=80" alt="Zona de espera")
+                  .col-6: img(src="https://images.unsplash.com/photo-1563720223185-11003d516935?auto=format&fit=crop&w=500&q=80" alt="Tecnología QR")
+                
+                .p-3.bg-dark.rounded.border.border-secondary
+                  .d-flex.justify-content-between.text-white.small.mb-1
+                    <span>Índice de Satisfacción del Cliente:</span>
+                    <strong class="text-success">99.1% ⭐⭐⭐⭐⭐</strong>
+                  .d-flex.justify-content-between.text-white.small
+                    <span>Disponibilidad nocturna:</span>
+                    <strong class="text-kreo">100% Monitoreado</strong>
+
+    //- 3. RESEÑAS DE CLIENTES
+    section.py-5.border-top.border-secondary
+      .container.py-5.text-center
+        h2.fw-bold.mb-5 Lo que dicen nuestros <span class="text-kreo">Usuarios</span>
+        .row.g-4
+          .col-md-4
+            .card-glass.p-4.text-start.h-100
+              .text-warning.mb-2 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              p.text-white.opacity-90 "Entrar solo mostrando mi documento es lo mejor que le pudo pasar al parqueadero. Ya no hago filas ni pierdo tickets."
+              small.text-kreo.fw-bold - Carlos Mendoza (Cliente Frecuente)
+          .col-md-4
+            .card-glass.p-4.text-start.h-100
+              .text-warning.mb-2 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              p.text-white.opacity-90 "Recargar la Wallet y pagar automático es excelente. Además el servicio de lavado ecológico mientras trabajo es un puntazo."
+              small.text-kreo.fw-bold - Andrea Restrepo (Mensualidad)
+          .col-md-4
+            .card-glass.p-4.text-start.h-100
+              .text-warning.mb-2 <i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i><i class="bi bi-star-fill"></i>
+              p.text-white.opacity-90 "La interfaz es rapidísima y muy moderna. Da gusto ver proyectos del SENA con este nivel de ingeniería web."
+              small.text-kreo.fw-bold - Ing. Camilo Torres (Invitado)
+
+    footer.text-center.py-4.border-top.border-secondary.bg-black
+      p.text-white.opacity-70.small © 2026 Kreo Fintech Parking. Todos los derechos reservados.
+
+    script.
+      // Función para alternar el despliegue fluido de las tarjetas
+      function toggleExpand(contentId, cardElement) {
+        const content = document.getElementById(contentId);
+        // Cierra otros contenidos abiertos opcionalmente si deseas efecto acordeón exclusivo, 
+        // aquí permitimos abrir múltiples de forma independiente.
+        content.classList.toggle('open');
+        
+        // Rota la flecha si la tarjeta tiene icono de chevron
+        const icon = cardElement.querySelector('.bi-chevron-down');
+        if(icon) {
+          icon.style.transform = content.classList.contains('open') ? 'rotate(180deg)' : 'rotate(0deg)';
+          icon.style.transition = 'transform 0.3s ease';
+        }
+      }

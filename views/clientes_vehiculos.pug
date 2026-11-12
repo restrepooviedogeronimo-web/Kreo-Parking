@@ -1,0 +1,33 @@
+extends layout
+
+block content
+  .d-flex.justify-content-between.align-items-center.mb-4
+    h2.fw-bold.text-white Mis <span class="text-kreo">Vehículos & Wallet</span>
+    span.badge.bg-kreo.text-dark.fs-6 Saldo Wallet: $#{Number(saldoWallet).toLocaleString('es-CO')} COP
+
+  if mensaje
+    .alert.alert-success.bg-transparent.border-success.text-kreo.fw-bold= mensaje
+
+  .row.g-4
+    .col-md-5
+      .card-glass.p-4.h-100
+        h4.text-kreo.fw-bold.mb-3 <i class="bi bi-wallet2 me-2"></i> Billetera Digital Kreo
+        p.text-white.opacity-80 Utiliza tu saldo digital para pagar tarifas por hora o mensualidades de forma automática.
+        
+        form(action="/wallet/recargar" method="POST" class="mt-4")
+          button.btn.btn-kreo.w-100(type="submit") <i class="bi bi-plus-circle me-2"></i> Recargar $20.000 COP
+
+    .col-md-7
+      .card-glass.p-4.h-100
+        h4.text-kreo.fw-bold.mb-3 <i class="bi bi-car-front-fill me-2"></i> Estado Actual en La Bahía
+        
+        if vehiculoActivo
+          .p-3.bg-dark.rounded.border.border-danger
+            h5.text-white.mb-2 Placa: <span class="text-kreo">#{vehiculoActivo.placa}</span>
+            p.text-white.opacity-90.mb-1 <strong>Tipo:</strong> #{vehiculoActivo.tipo} | <strong>Marca:</strong> #{vehiculoActivo.marca}
+            p.text-white.opacity-90.mb-3 <strong>Entrada:</strong> #{new Date(vehiculoActivo.hora_entrada).toLocaleTimeString()}
+            span.badge.bg-success Vehículo Parqueado y Seguro
+        else
+          .text-center.py-4
+            i.bi.bi-shield-check.display-4.text-muted.mb-2
+            p.text-white.opacity-70 No tienes ningún vehículo ingresado actualmente en el parqueadero.

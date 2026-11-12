@@ -1,0 +1,14 @@
+extends layout
+
+block content
+  .d-flex.justify-content-between.align-items-center.mb-4
+    h2.fw-bold.text-white Bienvenido, <span class="text-kreo">#{usuario.nombre}</span>
+    span.badge.bg-kreo.text-dark.fs-6.px-3.py-2 Rol: #{usuario.rol_nombre}
+
+  if mensaje
+    .alert.alert-success.bg-transparent.border-success.text-kreo.fw-bold= mensaje
+
+  .card-glass.p-5.text-center
+    i.bi.bi-speedometer2.text-kreo.display-1.mb-3
+    h3.text-white Panel Principal de Control
+    p.text-muted.fs-5.mt-2 El sistema opera correctamente. Pasa el cursor sobre el borde izquierdo para desplegar el menú lateral con las funciones de tu rol.

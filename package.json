@@ -1,0 +1,21 @@
+{
+  "name": "kreo_web",
+  "version": "1.0.0",
+  "description": "Ecosistema Kreo SENA",
+  "main": "app.js",
+  "scripts": {
+    "dev": "nodemon app.js",
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.6.1",
+    "express": "^4.22.3",
+    "express-session": "^1.19.0",
+    "mysql2": "^3.24.6",
+    "pug": "^3.0.4",
+    "qrcode": "^1.5.4"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.7"
+  }
+}

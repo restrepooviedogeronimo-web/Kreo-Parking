@@ -1,0 +1,17 @@
+extends layout
+
+block content
+  h2.fw-bold.text-white.mb-4 Gestión Financiera y <span class="text-kreo">Tarifas</span>
+  if mensaje
+    .alert.alert-success.bg-transparent.border-success.text-kreo.fw-bold= mensaje
+
+  .row
+    .col-md-6
+      .card-glass.p-4
+        h4.text-kreo.fw-bold.mb-3 Actualizar Tarifas por Hora
+        form(action="/admin/tarifas" method="POST")
+          each t in tarifas
+            .mb-3
+              label.form-label.text-white Tarifa para #{t.tipo_vehiculo} ($ COP)
+              input.form-control.bg-dark.text-white.border-secondary(type="number" name=`precio_${t.tipo_vehiculo.toLowerCase()}` value=t.precio required)
+          button.btn.btn-kreo.w-100(type="submit") Guardar Nuevas Tarifas

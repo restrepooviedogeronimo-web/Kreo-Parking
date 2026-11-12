@@ -1,0 +1,21 @@
+extends layout
+
+block content
+  h2.fw-bold.text-white.mb-4 Mi <span class="text-kreo">Perfil</span>
+  
+  if mensaje
+    .alert.alert-success.bg-transparent.border-success.text-kreo.fw-bold= mensaje
+
+  .card-glass.p-4(style="max-width: 500px;")
+    form(action="/perfil/actualizar" method="POST")
+      .mb-3
+        label.form-label.text-kreo.fw-bold Nombre Completo
+        input.form-control.bg-dark.text-white.border-secondary(type="text" name="nombre" value=datos.nombre required)
+      .mb-3
+        label.form-label.text-kreo.fw-bold Correo Electrónico
+        input.form-control.bg-dark.text-white.border-secondary(type="email" name="correo" value=datos.correo required)
+      .mb-4
+        label.form-label.text-kreo.fw-bold Documento (Solo Lectura)
+        input.form-control.bg-dark.text-white-50.border-secondary(type="text" value=datos.documento readonly)
+      
+      button.btn.btn-kreo.w-100(type="submit") Guardar Cambios

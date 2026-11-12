@@ -1,0 +1,45 @@
+extends layout
+
+block content
+  h2.fw-bold.text-white.mb-4 Control de <span class="text-kreo">Ingresos y Salidas</span>
+  if mensaje
+    .alert.alert-success.bg-transparent.border-success.text-kreo.fw-bold= mensaje
+
+  .row.g-4
+    .col-md-4
+      .card-glass.p-4
+        h4.text-kreo.fw-bold.mb-3 Registrar Ingreso
+        form(action="/ingreso" method="POST")
+          .mb-3
+            label.form-label.text-white Placa
+            input.form-control.bg-dark.text-white.border-secondary(type="text" name="placa" required placeholder="Ej: ABC123")
+          .mb-3
+            label.form-label.text-white Tipo de Vehículo
+            select.form-select.bg-dark.text-white.border-secondary(name="tipo_vehiculo")
+              option(value="Auto") Automóvil
+              option(value="Moto") Motocicleta
+          .mb-3
+            label.form-label.text-white Marca (Opcional)
+            input.form-control.bg-dark.text-white.border-secondary(type="text" name="marca")
+          button.btn.btn-kreo.w-100(type="submit") Registrar Ingreso
+
+    .col-md-8
+      .card-glass.p-4
+        h4.text-kreo.fw-bold.mb-3 Vehículos Parqueados Actualmente
+        table.table.table-dark.align-middle
+          thead
+            tr
+              th Placa
+              th Tipo
+              th Entrada
+              th Acción (Salida)
+          tbody
+            each v in vehiculos
+              tr
+                td.text-kreo.fw-bold= v.placa
+                td= v.tipo
+                td= new Date(v.hora_entrada).toLocaleTimeString()
+                td
+                  form(action=`/salida/${v.id_registro}` method="POST" class="d-flex gap-2 align-items-center")
+                    input.form-control.form-control-sm.bg-dark.text-white.border-secondary(type="text" name="codigo_cupon" placeholder="Cupón (Ej: KREO10)")
+                    button.btn.btn-sm.btn-outline-danger(type="submit") Procesar Salida
